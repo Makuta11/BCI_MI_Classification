@@ -46,6 +46,9 @@ test_dataset = ImageTensorDatasetMultiEpoch(data_test, users_test, filter_seq = 
 train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=True)
 
+del train_dataset, test_dataset, data_train, data_test, label_train, label_test
+torch.cuda.empty_cache()
+
 # Create device for GPU compatability
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
