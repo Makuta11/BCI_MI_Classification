@@ -102,5 +102,5 @@ collected_data['val_loss'] = val_loss_collect
 collected_data['scores'] = scores
 
 # Save model performance statistics to a pickle file
-with open('outputs/ModelOutput.pickle', 'wb') as handle:
+with open('modelSaves/ModelOutput.pickle', 'wb') as handle:
 	pickle.dump(collected_data, handle)
