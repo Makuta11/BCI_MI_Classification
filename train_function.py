@@ -45,7 +45,7 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
             out = model(temp)
             val_loss += criterion(out, temp_label)
 
-            del temp
+            del temp_data
             torch.cuda.empty_cache()
 
         if scheduler:
