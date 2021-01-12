@@ -65,7 +65,7 @@ predictions = pd.DataFrame()
 for i, x in enumerate(test_dataloader):
 	model.eval()
 	outList = model(x[0].float().to(device))
-	outID = x[2].float().to(device)
+	outID = x[2]
 
 	outLabelsTrue = x[1].long().to(device)
 	
