@@ -42,7 +42,7 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
             temp_data = x[0].float().to(device)
             temp_label = x[1].long().to(device)
 
-            out = model(temp)
+            out = model(temp_data)
             val_loss += criterion(out, temp_label)
 
             del temp_data
