@@ -25,7 +25,7 @@ data_train, data_test, label_train, label_test = load_data(users_train, users_te
 # Data parameters
 SEQ_CHANNELS = 3
 SEQ_FILTERS = 6
-SEQ_LENGTH = 30
+SEQ_LENGTH = 10
 NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
