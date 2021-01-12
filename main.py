@@ -67,7 +67,7 @@ for i, x in enumerate(test_dataloader):
 	outList = model(x[0].float().to(device))
 	outID = x[2]
 
-	outLabelsTrue = x[1].long().to(device)
+	outLabelsTrue = x[1].long()
 	
 	for k in range(outList.shape[0]):
 		line = outList[k,:,:]
