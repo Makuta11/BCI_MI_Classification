@@ -59,6 +59,7 @@ loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion,
 
 # Define prediction evaluation parameters
 collect = dict()
+collected_data = dict()
 predictions = pd.DataFrame()
 
 # Place prediction for each datapoint in a dictionary
