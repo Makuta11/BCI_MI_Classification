@@ -64,10 +64,10 @@ predictions = pd.DataFrame()
 # Place prediction for each datapoint in a dictionary
 for i, x in enumerate(test_dataloader):
 	model.eval()
-	outList = model(x[0].float().to(device)).detach().cpu()
-	outID = x[2]
+	outList = model(x[0].float().to(device))
+	outID = x[2].float().to(device)
 
-	outLabelsTrue = x[1].long()
+	outLabelsTrue = x[1].long().to(device)
 	
 	for k in range(outList.shape[0]):
 		line = outList[k,:,:]

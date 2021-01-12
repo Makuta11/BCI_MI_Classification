@@ -39,9 +39,15 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
         model.eval()
         val_loss = 0 
         for i, x in enumerate(val_dataloader):
-            out = model(x[0].float().to(device))
-            val_loss += criterion(out, x[1].long().to(device).detach())
-        
+            temp_data = x[0].float().to(device)
+            temp_label = x[1].long().to(device)
+
+            out = model(temp)
+            val_loss += criterion(out, temp_label)
+
+            del temp
+            torch.cuda.empty_cache()
+
         if scheduler:
             scheduler.step()
 
