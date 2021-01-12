@@ -1,0 +1,68 @@
+Runnin script...
+1 out of 1
+1.0898252725601196
+1.0945463180541992
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-13>
+Subject: Job 8904409: <My_Test_HPC> in cluster <dcc> Exited
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164272> in cluster <dcc> at Tue Jan 12 15:45:13 2021
+Job was executed on host(s) <n-62-20-13>, in queue <gpuv100>, as user <s164272> in cluster <dcc> at Tue Jan 12 15:54:32 2021
+</zhome/08/3/117881> was used as the home directory.
+</zhome/08/3/117881/BCI_Project/BCI_MI_Classification> was used as the working directory.
+Started at Tue Jan 12 15:54:32 2021
+Terminated at Tue Jan 12 15:56:58 2021
+Results reported at Tue Jan 12 15:56:58 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -R "select[gpu32gb]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   134.46 sec.
+    Max Memory :                                 7402 MB
+    Average Memory :                             5447.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               25366.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   145 sec.
+    Turnaround time :                            705 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_8904409.err> for stderr output of this job.
+
