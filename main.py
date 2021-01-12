@@ -31,13 +31,13 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 12000
-NUM_EPOCHS = 5
+NUM_EPOCHS = 1
 DROPOUT_PROP = 0.45
 LEARNING_RATE = 1e-4
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 256
-CONV_FILTERS = [32, 16]
-LSTM_HIDDEN_DIM = 64
+CONV_FILTERS = [32]
+LSTM_HIDDEN_DIM = 8
 
 # Create dataset and dataloaders
 train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
