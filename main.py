@@ -13,7 +13,7 @@ from models import *
 from performance import *
 
 # Perform test train split on 6 subjects
-Users = np.arange(6)
+Users = np.arange(5)
 users_train, users_test = train_test_split(Users, shuffle = True, random_state = 11)
 
 # Load data - specify if you would like to load evaluation data as well
