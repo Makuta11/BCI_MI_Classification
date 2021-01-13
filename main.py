@@ -21,14 +21,14 @@ users_test = [1]
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
 
-datalen = 8000
+datalen = 12000
 datastart = 14500
 for user in users_train:
-	data_train[user] = data_train[user][datastart:(datalen + datastart)]
+	data_train[user] = data_train[user][datastart:(datalen + datastart),0,0]
 	label_train[user] = label_train[user][datastart:(datalen + datastart)]
 
 for user in users_test:
-	data_test[user] = data_test[user][datastart:(datalen + datastart)]
+	data_test[user] = data_test[user][datastart:(datalen + datastart),0,0]
 	label_test[user] = label_test[user][datastart:(datalen + datastart)]
 
 # Data parameters
