@@ -16,16 +16,20 @@ from performance import *
 Users = np.arange(5)
 users_train, users_test = train_test_split(Users, shuffle = True, random_state = 11)
 
-users_train = [0]
+users_train = [0, 2]
 users_test = [1]
 
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
 
-data_train[0] = data_train[0][:60000]
-data_test[1] = data_test[1][:60000]
-label_train[0] = label_train[0][:60000]
-label_test[1] = label_test[1][:60000]
+datalen = 10000
+for user in user_train:
+	data_train[user] = data_train[user][:datalen]
+	label_train[user] = label_train[user][:datalen]
+
+for user in user_test:
+	data_test[user] = data_test[user][:datalen]
+	label_test[user] = label_test[user][:datalen]
 
 # Data parameters
 SEQ_CHANNELS = 3
@@ -35,7 +39,7 @@ NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 8000
+BATCH_SIZE = 12000
 NUM_EPOCHS = 50
 DROPOUT_PROP = 0.45
 LEARNING_RATE = 1e-2
@@ -59,7 +63,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Initialize model
 model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
-optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-3)
+optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-2)
 criterion = nn.CrossEntropyLoss()
 
 # Run training
