@@ -17,7 +17,7 @@ Users = np.arange(5)
 users_train, users_test = train_test_split(Users, shuffle = True, random_state = 11)
 
 users_train = [0, 2, 3, 4]
-users_test = [1, 5]
+users_test = [1]
 
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
