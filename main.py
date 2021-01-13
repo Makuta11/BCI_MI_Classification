@@ -21,14 +21,14 @@ users_test = [1]
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
 
-datalen = 8000
+datalen = 12000
 datastart = 14500
 for user in users_train:
-	data_train[user] = data_train[user][datastart:(datalen + datastart),0,0]
+	data_train[user] = data_train[user][datastart:(datalen + datastart)]
 	label_train[user] = label_train[user][datastart:(datalen + datastart)]
 
 for user in users_test:
-	data_test[user] = data_test[user][datastart:(datalen + datastart),0,0]
+	data_test[user] = data_test[user][datastart:(datalen + datastart)]
 	label_test[user] = label_test[user][datastart:(datalen + datastart)]
 
 # Data parameters
@@ -39,7 +39,7 @@ NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 6000
+BATCH_SIZE = 500
 NUM_EPOCHS = 50
 DROPOUT_PROP = 0.45
 LEARNING_RATE = 1e-2
