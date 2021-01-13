@@ -22,16 +22,21 @@ users_test = [1]
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
 
+data_train[0] = data_train[0][:60000]
+data_test[1] = data_test[1][:60000]
+label_train[0] = label_train[0][:60000]
+label_test[1] = label_test[1][:60000]
+
 # Data parameters
 SEQ_CHANNELS = 3
 SEQ_FILTERS = 6
-SEQ_LENGTH = 25
+SEQ_LENGTH = 30
 NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 1000
-NUM_EPOCHS = 20
+BATCH_SIZE = 8000
+NUM_EPOCHS = 50
 DROPOUT_PROP = 0.45
 LEARNING_RATE = 1e-4
 NUM_CLASSES = 3
