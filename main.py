@@ -46,7 +46,7 @@ LEARNING_RATE = 1e-2
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 256
 CONV_FILTERS = [32]
-LSTM_HIDDEN_DIM = 64
+LSTM_HIDDEN_DIM = 32
 
 # Create dataset and dataloaders
 train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
