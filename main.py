@@ -1,4 +1,3 @@
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -22,14 +21,15 @@ users_test = [1]
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
 
-datalen = 20000
+datalen = 8000
+datastart = 14500
 for user in users_train:
-	data_train[user] = data_train[user][:datalen]
-	label_train[user] = label_train[user][:datalen]
+	data_train[user] = data_train[user][datastart:(datalen + datastart)]
+	label_train[user] = label_train[user][datastart:(datalen + datastart)]
 
 for user in users_test:
-	data_test[user] = data_test[user][:datalen]
-	label_test[user] = label_test[user][:datalen]
+	data_test[user] = data_test[user][datastart:(datalen + datastart)]
+	label_test[user] = label_test[user][datastart:(datalen + datastart)]
 
 # Data parameters
 SEQ_CHANNELS = 3
