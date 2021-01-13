@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "main.py", line 56, in <module>
+    model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
+  File "/zhome/08/3/117881/BCI_Project/BCI_MI_Classification/models.py", line 68, in __init__
+    self.fc1 = nn.Linear(in_features = lstm_hidden_dim, out_features = fc_hidden_dim)
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/torch/nn/modules/linear.py", line 78, in __init__
+    self.weight = Parameter(torch.Tensor(out_features, in_features))
+TypeError: new() received an invalid combination of arguments - got (float, int), but expected one of:
+ * (*, torch.device device)
+      didn't match because some of the arguments have invalid types: (!float!, !int!)
+ * (torch.Storage storage)
+ * (Tensor other)
+ * (tuple of ints size, *, torch.device device)
+ * (object data, *, torch.device device)
+
