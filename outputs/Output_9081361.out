@@ -1,0 +1,215 @@
+Runnin script...
+1 out of 50
+0.8701348304748535
+0.9586889743804932
+2 out of 50
+0.5559115409851074
+0.8235694169998169
+3 out of 50
+0.552211582660675
+0.72810959815979
+4 out of 50
+0.551773190498352
+0.6821291446685791
+5 out of 50
+0.5516926050186157
+0.6660715937614441
+6 out of 50
+0.5516781806945801
+0.667838990688324
+7 out of 50
+0.5517055988311768
+0.680915117263794
+8 out of 50
+0.5517592430114746
+0.7008751034736633
+9 out of 50
+0.5518056154251099
+0.7239242792129517
+10 out of 50
+0.5518759489059448
+0.7471935749053955
+11 out of 50
+0.55191969871521
+0.7672407031059265
+12 out of 50
+0.5519969463348389
+0.7826032638549805
+13 out of 50
+0.5520268678665161
+0.7917509078979492
+14 out of 50
+0.5520719289779663
+0.7962769269943237
+15 out of 50
+0.5521127581596375
+0.7976341247558594
+16 out of 50
+0.5521596670150757
+0.7962596416473389
+17 out of 50
+0.5522201657295227
+0.7927021980285645
+18 out of 50
+0.552251935005188
+0.7869423031806946
+19 out of 50
+0.5522502660751343
+0.7775647640228271
+20 out of 50
+0.5522331595420837
+0.76395583152771
+21 out of 50
+0.5521976947784424
+0.7463524341583252
+22 out of 50
+0.5521648526191711
+0.7286389470100403
+23 out of 50
+0.552151083946228
+0.7130308747291565
+24 out of 50
+0.5521558523178101
+0.7008504271507263
+25 out of 50
+0.5521881580352783
+0.692186713218689
+26 out of 50
+0.5522674322128296
+0.6857696175575256
+27 out of 50
+0.5523874759674072
+0.680158257484436
+28 out of 50
+0.5525487661361694
+0.6729693412780762
+29 out of 50
+0.5526977777481079
+0.6638584733009338
+30 out of 50
+0.5528957843780518
+0.6516143083572388
+31 out of 50
+0.5530210137367249
+0.6361497640609741
+32 out of 50
+0.5531362295150757
+0.6213151216506958
+33 out of 50
+0.5532695651054382
+0.6101837754249573
+34 out of 50
+0.5533846616744995
+0.6043468713760376
+35 out of 50
+0.5535191893577576
+0.5989136099815369
+36 out of 50
+0.5536118745803833
+0.5926597714424133
+37 out of 50
+0.5537405014038086
+0.5878393054008484
+38 out of 50
+0.5538351535797119
+0.5845719575881958
+39 out of 50
+0.5539125204086304
+0.5801967978477478
+40 out of 50
+0.5539886355400085
+0.5762855410575867
+41 out of 50
+0.5540655255317688
+0.5747140645980835
+42 out of 50
+0.5541591644287109
+0.5724455118179321
+43 out of 50
+0.5542094707489014
+0.5695897340774536
+44 out of 50
+0.5542420148849487
+0.568229079246521
+45 out of 50
+0.5542318820953369
+0.5660830736160278
+46 out of 50
+0.5542468428611755
+0.5643824934959412
+47 out of 50
+0.5542908310890198
+0.5632614493370056
+48 out of 50
+0.5543245077133179
+0.5621726512908936
+49 out of 50
+0.5543637275695801
+0.5614434480667114
+50 out of 50
+0.5544075965881348
+0.5606878399848938
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-16>
+Subject: Job 9081361: <My_Test_HPC> in cluster <dcc> Done
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164272> in cluster <dcc> at Wed Jan 13 18:30:49 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s164272> in cluster <dcc> at Wed Jan 13 18:30:50 2021
+</zhome/08/3/117881> was used as the home directory.
+</zhome/08/3/117881/BCI_Project/BCI_MI_Classification> was used as the working directory.
+Started at Wed Jan 13 18:30:50 2021
+Terminated at Wed Jan 13 18:32:11 2021
+Results reported at Wed Jan 13 18:32:11 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -R "select[gpu32gb]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   66.72 sec.
+    Max Memory :                                 1364 MB
+    Average Memory :                             1364.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               31404.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                8
+    Run time :                                   88 sec.
+    Turnaround time :                            82 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9081361.err> for stderr output of this job.
+
