@@ -23,11 +23,11 @@ users_test = [1]
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
 
 datalen = 10000
-for user in user_train:
+for user in users_train:
 	data_train[user] = data_train[user][:datalen]
 	label_train[user] = label_train[user][:datalen]
 
-for user in user_test:
+for user in users_test:
 	data_test[user] = data_test[user][:datalen]
 	label_test[user] = label_test[user][:datalen]
 
