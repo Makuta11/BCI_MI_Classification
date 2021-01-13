@@ -13,7 +13,7 @@ from performance import *
 
 # Perform test train split on 6 subjects
 Users = np.arange(5)
-users_train, users_test = train_test_split(Users, shuffle = True, random_state = 11)
+users_train, users_test = train_test_split(Users, shuffle = True)
 
 users_train = [0]
 users_test = [1]
@@ -21,15 +21,15 @@ users_test = [1]
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
 
-datalen = 8000
-datastart = 14500
-for user in users_train:
-	data_train[user] = data_train[user][datastart:(datalen + datastart)]
-	label_train[user] = label_train[user][datastart:(datalen + datastart)]
+#datalen = 8000
+#datastart = 14500
+#for user in users_train:
+#	data_train[user] = data_train[user][datastart:(datalen + datastart)]
+#	label_train[user] = label_train[user][datastart:(datalen + datastart)]
 
-for user in users_test:
-	data_test[user] = data_test[user][datastart:(datalen + datastart)]
-	label_test[user] = label_test[user][datastart:(datalen + datastart)]
+#for user in users_test:
+#	data_test[user] = data_test[user][datastart:(datalen + datastart)]
+#	label_test[user] = label_test[user][datastart:(datalen + datastart)]
 
 # Data parameters
 SEQ_CHANNELS = 3
@@ -39,14 +39,14 @@ NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 500
+BATCH_SIZE = 6000
 NUM_EPOCHS = 50
 DROPOUT_PROP = 0.45
-LEARNING_RATE = 1e-2
+LEARNING_RATE = 1e-3
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 256
 CONV_FILTERS = [32]
-LSTM_HIDDEN_DIM = 32
+LSTM_HIDDEN_DIM = 64
 
 # Create dataset and dataloaders
 train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
