@@ -17,9 +17,9 @@ users_train, users_test = train_test_split(Users, shuffle = True)
 
 #users_train = [0]
 #users_test = [1]
-
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Load data - specify if you would like to load evaluation data as well
-data_train, data_test, label_train, label_test = load_data(users_train, users_test)
+data_train.to(device), data_test.to(device), label_train.to(device), label_test.to(device) = load_data(users_train, users_test)
 
 #datalen = 8000
 #datastart = 14500
@@ -59,7 +59,7 @@ del train_dataset, test_dataset, data_train, data_test, label_train, label_test
 torch.cuda.empty_cache()
 
 # Create device for GPU compatability
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Initialize model
 model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
