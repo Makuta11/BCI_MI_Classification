@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "main.py", line 70, in <module>
+    loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion, NUM_EPOCHS, train_dataloader, test_dataloader, device, scheduler = None)	
+  File "/zhome/08/3/117881/BCI_Project/BCI_MI_Classification/train_function.py", line 45, in train_model
+    out = model(temp_data)
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/zhome/08/3/117881/BCI_Project/BCI_MI_Classification/models.py", line 98, in forward
+    X_data = F.relu(X_data)
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/torch/nn/functional.py", line 1136, in relu
+    result = torch.relu(input)
+RuntimeError: CUDA out of memory. Tried to allocate 176.00 MiB (GPU 0; 31.75 GiB total capacity; 29.65 GiB already allocated; 84.00 MiB free; 30.43 GiB reserved in total by PyTorch)
