@@ -69,6 +69,9 @@ criterion = nn.CrossEntropyLoss()
 # Run training
 loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion, NUM_EPOCHS, train_dataloader, test_dataloader, device, scheduler = None)	
 
+# Save model for later evaluation
+torch.save(model.state_dict(), 'outputs/SeqSeqModel_sd.pt')
+
 # Define prediction evaluation parameters
 collect = dict()
 collected_data = dict()
