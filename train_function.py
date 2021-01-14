@@ -14,12 +14,12 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
     for epoch in range(num_epochs):
         running_loss = 0
         model.train()
-        optimizer.zero_grad()
+        
         for i, x in enumerate(train_dataloader):
             x_data = x[0].float().to(device)
             label = x[1].long().to(device)
 
-            
+            optimizer.zero_grad()
             out = model(x_data)
             del x_data
             torch.cuda.empty_cache()
@@ -28,10 +28,10 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
             loss.backward()
             
             # Backpropagate through gradient accumulation for lower GPU memmory storage
-            if (i+1)%10 == 0:
-                optimizer.step()
-                optimizer.zero_grad()
-                running_loss += loss.detach().cpu()
+            #if (i+1)%10 == 0:
+            optimizer.step()
+            #optimizer.zero_grad()
+            running_loss += loss.detach().cpu()
 
             del label, loss 
             torch.cuda.empty_cache()

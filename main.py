@@ -15,8 +15,8 @@ from performance import *
 Users = np.arange(5)
 users_train, users_test = train_test_split(Users, shuffle = True)
 
-users_train = [0]
-users_test = [1]
+#users_train = [0]
+#users_test = [1]
 
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
@@ -34,17 +34,17 @@ data_train, data_test, label_train, label_test = load_data(users_train, users_te
 # Data parameters
 SEQ_CHANNELS = 3
 SEQ_FILTERS = 6
-SEQ_LENGTH = 20
+SEQ_LENGTH = 30
 NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 500
-NUM_EPOCHS = 50
-DROPOUT_PROP = 0.45
-LEARNING_RATE = 1e-3
+BATCH_SIZE = 300
+NUM_EPOCHS = 500
+DROPOUT_PROP = 0.25
+LEARNING_RATE = 1e-5
 NUM_CLASSES = 3
-FC_HIDDEN_DIM = 128
+FC_HIDDEN_DIM = 256
 CONV_FILTERS = [32]
 LSTM_HIDDEN_DIM = 64
 
