@@ -58,7 +58,7 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
         if scheduler:
             scheduler.step()
 
-        val_loss_collect = np.append(val_loss_collect, val_loss.detach().cpu()/(i+1))
+        val_loss_collect = np.append(val_loss_collect, val_loss/(i+1))
 
         print(str(epoch + 1) + ' out of ' + str(num_epochs))
         print(loss_collect[epoch])
