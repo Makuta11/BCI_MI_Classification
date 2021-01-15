@@ -12,24 +12,16 @@ from models import *
 from performance import *
 
 # Perform test train split on 6 subjects
-Users = np.arange(5)
-users_train, users_test = train_test_split(Users, shuffle = True)
+#Users = np.arange(5)
+#users_train, users_test = train_test_split(Users, shuffle = True)
 
-#users_train = [0]
-#users_test = [1]
+# Only used for testing. Remove for final hand in
+users_train = [0, 1, 3, 4]
+users_test = [2]
 
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
-
-#datalen = 8000
-#datastart = 14500
-#for user in users_train:
-#	data_train[user] = data_train[user][datastart:(datalen + datastart)]
-#	label_train[user] = label_train[user][datastart:(datalen + datastart)]
-
-#for user in users_test:
-#	data_test[user] = data_test[user][datastart:(datalen + datastart)]
-#	label_test[user] = label_test[user][datastart:(datalen + datastart)]
+print("loaded data")
 
 # Data parameters
 SEQ_CHANNELS = 3
@@ -39,7 +31,7 @@ NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 300
+BATCH_SIZE = 1000
 NUM_EPOCHS = 1
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-5
@@ -51,9 +43,11 @@ LSTM_HIDDEN_DIM = 64
 # Create dataset and dataloaders
 train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
 test_dataset = ImageTensorDatasetMultiEpoch(data_test, users_test, filter_seq = SEQ_LENGTH - 1, label = label_test)
+print("created datasets")
 
 train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=True)
+print("created dataloaders")
 
 del train_dataset, test_dataset, data_train, data_test, label_train, label_test
 torch.cuda.empty_cache()
@@ -65,12 +59,15 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-2)
 criterion = nn.CrossEntropyLoss()
+print("initialized model")
 
 # Run training
 loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion, NUM_EPOCHS, train_dataloader, test_dataloader, device, scheduler = None)	
+print("trained model")
 
 # Save model for later evaluation
 torch.save(model.state_dict(), 'outputs/SeqSeqModel_train1poch_sd.pt')
+print("saved model")
 
 # Define prediction evaluation parameters
 collect = dict()

@@ -12,6 +12,8 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
     val_loss_collect = []
 
     for epoch in range(num_epochs):
+        if epoch == 0:
+            print("Training first epoch")
         running_loss = 0
         model.train()
         
@@ -31,7 +33,7 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
             #if (i+1)%10 == 0:
             optimizer.step()
             #optimizer.zero_grad()
-            running_loss += loss.detach().cpu()
+            running_loss += loss.detach().cpu().item()
 
             del label, loss 
             torch.cuda.empty_cache()
