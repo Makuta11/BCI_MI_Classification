@@ -39,8 +39,8 @@ NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 30
-NUM_EPOCHS = 500
+BATCH_SIZE = 100
+NUM_EPOCHS = 300
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-5
 NUM_CLASSES = 3
@@ -70,7 +70,7 @@ criterion = nn.CrossEntropyLoss()
 loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion, NUM_EPOCHS, train_dataloader, test_dataloader, device, scheduler = None)	
 
 # Save model for later evaluation
-torch.save(model.state_dict(), 'outputs/SeqSeqModel_sd.pt')
+torch.save(model.state_dict(), 'outputs/SeqSeqModel_100batch_sd.pt')
 
 # Define prediction evaluation parameters
 collect = dict()
@@ -117,5 +117,5 @@ collected_data['val_loss'] = val_loss_collect
 collected_data['scores'] = scores
 
 # Save model performance statistics to a pickle file
-with open('modelSaves/ModelOutput.pickle', 'wb') as handle:
+with open('modelSaves/ModelOutput_100batch.pickle', 'wb') as handle:
 	pickle.dump(collected_data, handle)
