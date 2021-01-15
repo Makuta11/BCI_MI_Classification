@@ -59,8 +59,7 @@ class CnnNetManyToMany(nn.Module):
         self.batchnorm_2 = nn.BatchNorm1d(seq_length)
 
         self.lstm = nn.LSTM(input_size = self.lstm_input, hidden_size = lstm_hidden_dim,
-                            batch_first = True, bidirectional = False, num_layers = 1,
-                            dropout = dropout_prop)
+                            batch_first = True, bidirectional = False, num_layers = 1)
         self.dropout = nn.Dropout(p = dropout_prop)
         
         self.batchnorm_3 = nn.BatchNorm1d(seq_length) 
