@@ -11,8 +11,8 @@ from train_function import *
 from models import *
 from performance import *
 
-# Perform test train split on 6 subjects
-#Users = np.arange(5)
+# Perform test train split on 5 subjects
+#Users = np.arange(6)
 #users_train, users_test = train_test_split(Users, shuffle = True)
 
 # Only used for testing. Remove for final hand in
@@ -26,12 +26,12 @@ print("loaded data")
 # Data parameters
 SEQ_CHANNELS = 3
 SEQ_FILTERS = 6
-SEQ_LENGTH = 50
+SEQ_LENGTH = 60
 NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE =5000
+BATCH_SIZE = 12000
 NUM_EPOCHS = 1
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-5

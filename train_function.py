@@ -50,7 +50,7 @@ def train_model(model, optimizer, criterion, num_epochs, train_dataloader, val_d
             temp_label = x[1].long().to(device)
 
             out = model(temp_data)
-            val_loss += criterion(out, temp_label).detach().cpu()
+            val_loss += criterion(out, temp_label).detach().cpu().item()
 
             del temp_data, temp_label
             torch.cuda.empty_cache()
