@@ -1,0 +1,17 @@
+/zhome/08/3/117881/.local/lib/python3.6/site-packages/torch/nn/modules/rnn.py:61: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.25 and num_layers=1
+  "num_layers={}".format(dropout, num_layers))
+Traceback (most recent call last):
+  File "main.py", line 111, in <module>
+    scores = test_scores(predictions['pred'], predictions['label'])
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/pandas/core/frame.py", line 7751, in append
+    sort=sort,
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/pandas/core/reshape/concat.py", line 287, in concat
+    return op.get_result()
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/pandas/core/reshape/concat.py", line 503, in get_result
+    mgrs_indexers, self.new_axes, concat_axis=self.bm_axis, copy=self.copy,
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/pandas/core/internals/concat.py", line 69, in concatenate_block_managers
+    values = concat_compat(vals, axis=blk.ndim - 1)
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/pandas/core/dtypes/concat.py", line 180, in concat_compat
+    return np.concatenate(to_concat, axis=axis)
+  File "<__array_function__ internals>", line 6, in concatenate
+KeyboardInterrupt
