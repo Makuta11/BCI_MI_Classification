@@ -26,13 +26,13 @@ print("loaded data")
 # Data parameters
 SEQ_CHANNELS = 3
 SEQ_FILTERS = 6
-SEQ_LENGTH = 60
+SEQ_LENGTH = 490
 NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 10000
-NUM_EPOCHS = 300
+NUM_EPOCHS = 10
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-5
 NUM_CLASSES = 3
@@ -66,7 +66,7 @@ loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion,
 print("trained model")
 
 # Save model for later evaluation
-torch.save(model.state_dict(), 'outputs/SeqSeqModel_2lay_seq60_batch10000_epoch100_sd.pt')
+torch.save(model.state_dict(), 'outputs/SeqSeqModel_1lay_seq490_batch10000_epoch10_sd.pt')
 print("saved model")
 
 # Define prediction evaluation parameters
@@ -114,5 +114,5 @@ collected_data['val_loss'] = val_loss_collect
 collected_data['scores'] = scores
 
 # Save model performance statistics to a pickle file
-with open('modelSaves/ModelOutput_2lay_seq60_batch10000_epoch100.pickle', 'wb') as handle:
+with open('modelSaves/ModelOutput_1lay_seq490_batch10000_epoch10.pickle', 'wb') as handle:
 	pickle.dump(collected_data, handle)
