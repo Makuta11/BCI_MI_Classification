@@ -32,12 +32,12 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 1000
-NUM_EPOCHS = 500
+NUM_EPOCHS = 1
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-5
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
-CONV_FILTERS = [64, 16]
+CONV_FILTERS = [32]
 LSTM_HIDDEN_DIM = 64
 
 # Create dataset and dataloaders
@@ -66,7 +66,7 @@ loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion,
 print("trained model")
 
 # Save model for later evaluation
-torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_sd.pt')
+torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + 'LSTM2_sd.pt')
 print("saved model")
 
 # Define prediction evaluation parameters
@@ -114,5 +114,5 @@ collected_data['val_loss'] = val_loss_collect
 collected_data['scores'] = scores
 
 # Save model performance statistics to a pickle file
-with open('modelSaves/ModelOutput_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '.pickle', 'wb') as handle:
+with open('modelSaves/ModelOutput_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + 'LSTM2.pickle', 'wb') as handle:
 	pickle.dump(collected_data, handle)

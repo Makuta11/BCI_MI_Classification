@@ -37,29 +37,29 @@ class CnnNetManyToMany(nn.Module):
            nn.Dropout(p = dropout_prop)
         )
 
-        self.layer_img2 = nn.Sequential(
-            nn.Conv2d(in_channels = self.conv_hidden_dim[0], out_channels = self.conv_hidden_dim[1],
-                                kernel_size = (1, 3),
-                                 stride = (1, 1),
-                                 padding = (0, 1)),
-            nn.BatchNorm2d(self.conv_hidden_dim[1]),
-           nn.ReLU(),
-           nn.MaxPool2d(kernel_size = (1, 2), stride = (1, 2)),
-           nn.Dropout(p = dropout_prop)
-        )
+        #self.layer_img2 = nn.Sequential(
+        #    nn.Conv2d(in_channels = self.conv_hidden_dim[0], out_channels = self.conv_hidden_dim[1],
+        #                        kernel_size = (1, 3),
+        #                         stride = (1, 1),
+        #                         padding = (0, 1)),
+        #    nn.BatchNorm2d(self.conv_hidden_dim[1]),
+        #   nn.ReLU(),
+        #   nn.MaxPool2d(kernel_size = (1, 2), stride = (1, 2)),
+        #   nn.Dropout(p = dropout_prop)
+        #)
 
         f, l = conv2d_output_shape(data_shape, kernel_size = (1,2), 
                                       stride = (1,2), padding = (0,0))
 
-        f, l = conv2d_output_shape((f, l), kernel_size = (1,2), 
-                                      stride = (1,2), padding = (0,0))
+        #f, l = conv2d_output_shape((f, l), kernel_size = (1,2), 
+        #                              stride = (1,2), padding = (0,0))
         
-        self.lstm_input = self.conv_hidden_dim[1] * l
+        self.lstm_input = self.conv_hidden_dim[0] * l
 
         self.batchnorm_2 = nn.BatchNorm1d(seq_length)
 
         self.lstm = nn.LSTM(input_size = self.lstm_input, hidden_size = lstm_hidden_dim,
-                            batch_first = True, bidirectional = False, num_layers = 1)
+                            batch_first = True, bidirectional = False, num_layers = 2)
         self.dropout = nn.Dropout(p = dropout_prop)
         
         self.batchnorm_3 = nn.BatchNorm1d(seq_length) 
@@ -77,7 +77,7 @@ class CnnNetManyToMany(nn.Module):
         # Convolutional Layers
         X_data = X_data.permute(0, 2, 1, 3)
         X_data = self.layer_img1(X_data)
-        X_data = self.layer_img2(X_data)
+        #X_data = self.layer_img2(X_data)
         X_data = X_data.permute(0, 2, 1, 3)
 
         # Flatten for lstm input
