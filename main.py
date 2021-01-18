@@ -31,8 +31,8 @@ NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 5000
-NUM_EPOCHS = 1
+BATCH_SIZE = 1000
+NUM_EPOCHS = 300
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-4
 NUM_CLASSES = 3
@@ -66,7 +66,7 @@ loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion,
 print("trained model")
 
 # Save model for later evaluation
-torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2_8lay_sd.pt')
+torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM1_8lay_sd.pt')
 print("saved model")
 
 # Define prediction evaluation parameters
@@ -114,5 +114,5 @@ collected_data['val_loss'] = val_loss_collect
 collected_data['scores'] = scores
 
 # Save model performance statistics to a pickle file
-with open('modelSaves/ModelOutput_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM_8lay.pickle', 'wb') as handle:
+with open('modelSaves/ModelOutput_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM1_8lay.pickle', 'wb') as handle:
 	pickle.dump(collected_data, handle)
