@@ -38,7 +38,7 @@ LEARNING_RATE = 1e-4
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
 CONV_FILTERS = [32]
-LSTM_HIDDEN_DIM = 64
+LSTM_HIDDEN_DIM = 8
 
 # Create dataset and dataloaders
 train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
@@ -66,7 +66,7 @@ loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion,
 print("trained model")
 
 # Save model for later evaluation
-torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2_sd.pt')
+torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2_8lay_sd.pt')
 print("saved model")
 
 # Define prediction evaluation parameters
