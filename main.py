@@ -12,7 +12,7 @@ from models import *
 from performance import *
 
 # Perform test train split on 5 subjects
-Users = np.arange(12)
+Users = np.arange(13)
 users_train, users_test = train_test_split(Users, shuffle = True)
 
 # Only used for testing. Remove for final hand in
