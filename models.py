@@ -60,9 +60,8 @@ class CnnNetManyToMany(nn.Module):
 
         self.lstm = nn.LSTM(input_size = self.lstm_input, hidden_size = lstm_hidden_dim,
                             batch_first = True, bidirectional = False, num_layers = 2)
-        self.dropout = nn.Dropout(p = dropout_prop)
-        
         self.batchnorm_3 = nn.BatchNorm1d(seq_length) 
+        self.dropout = nn.Dropout(p = dropout_prop)
         
         self.fc1 = nn.Linear(in_features = lstm_hidden_dim, out_features = fc_hidden_dim)
         

@@ -12,12 +12,12 @@ from models import *
 from performance import *
 
 # Perform test train split on 5 subjects
-#Users = np.arange(6)
-#users_train, users_test = train_test_split(Users, shuffle = True)
+Users = np.arange(13)
+users_train, users_test = train_test_split(Users, shuffle = True)
 
 # Only used for testing. Remove for final hand in
-users_train = [0, 1, 3, 4]
-users_test = [2]
+#users_train = [0, 1, 3, 4, 5, 6]
+#users_test = [2]
 
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
@@ -32,9 +32,9 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 1000
-NUM_EPOCHS = 500
+NUM_EPOCHS = 1
 DROPOUT_PROP = 0.25
-LEARNING_RATE = 1e-5
+LEARNING_RATE = 1e-4
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
 CONV_FILTERS = [32]
@@ -66,7 +66,7 @@ loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion,
 print("trained model")
 
 # Save model for later evaluation
-torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + 'LSTM2_sd.pt')
+torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2_sd.pt')
 print("saved model")
 
 # Define prediction evaluation parameters
@@ -114,5 +114,5 @@ collected_data['val_loss'] = val_loss_collect
 collected_data['scores'] = scores
 
 # Save model performance statistics to a pickle file
-with open('modelSaves/ModelOutput_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + 'LSTM2.pickle', 'wb') as handle:
+with open('modelSaves/ModelOutput_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2.pickle', 'wb') as handle:
 	pickle.dump(collected_data, handle)
