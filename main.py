@@ -16,7 +16,7 @@ from performance import *
 #users_train, users_test = train_test_split(Users, shuffle = True)
 
 # Only used for testing. Remove for final hand in
-users_train = [0, 1, 3, 4]
+users_train = [0, 1, 3, 4, 5, 6]
 users_test = [2]
 
 # Load data - specify if you would like to load evaluation data as well
@@ -32,9 +32,9 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 1000
-NUM_EPOCHS = 500
+NUM_EPOCHS = 1
 DROPOUT_PROP = 0.25
-LEARNING_RATE = 1e-5
+LEARNING_RATE = 1e-4
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
 CONV_FILTERS = [32]
@@ -66,7 +66,7 @@ loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion,
 print("trained model")
 
 # Save model for later evaluation
-torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + 'LSTM2_sd.pt')
+torch.save(model.state_dict(), 'outputs/SeqSeqModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2_sd.pt')
 print("saved model")
 
 # Define prediction evaluation parameters
