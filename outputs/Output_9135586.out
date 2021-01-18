@@ -1,16 +1,26 @@
 Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 1
+1.0720189573055687
+1.0600098433484018
+trained model
+saved model
 
 ------------------------------------------------------------
 Sender: LSF System <lsfadmin@n-62-20-2>
-Subject: Job 9112258: <My_Test_HPC> in cluster <dcc> Exited
+Subject: Job 9135586: <My_Test_HPC> in cluster <dcc> Done
 
-Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164272> in cluster <dcc> at Sun Jan 17 19:45:42 2021
-Job was executed on host(s) <n-62-20-2>, in queue <gpuv100>, as user <s164272> in cluster <dcc> at Sun Jan 17 19:45:43 2021
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164272> in cluster <dcc> at Mon Jan 18 16:59:59 2021
+Job was executed on host(s) <n-62-20-2>, in queue <gpuv100>, as user <s164272> in cluster <dcc> at Mon Jan 18 18:50:09 2021
 </zhome/08/3/117881> was used as the home directory.
 </zhome/08/3/117881/BCI_Project/BCI_MI_Classification> was used as the working directory.
-Started at Sun Jan 17 19:45:43 2021
-Terminated at Mon Jan 18 19:44:57 2021
-Results reported at Mon Jan 18 19:44:57 2021
+Started at Mon Jan 18 18:50:09 2021
+Terminated at Mon Jan 18 22:20:15 2021
+Results reported at Mon Jan 18 22:20:15 2021
 
 Your job looked like:
 
@@ -39,21 +49,20 @@ python3 main.py
 
 ------------------------------------------------------------
 
-TERM_RUNLIMIT: job killed after reaching LSF run time limit.
-Exited with exit code 140.
+Successfully completed.
 
 Resource usage summary:
 
-    CPU time :                                   58774.00 sec.
-    Max Memory :                                 6082 MB
-    Average Memory :                             6042.10 MB
+    CPU time :                                   12315.43 sec.
+    Max Memory :                                 16549 MB
+    Average Memory :                             15727.63 MB
     Total Requested Memory :                     32768.00 MB
-    Delta Memory :                               26686.00 MB
+    Delta Memory :                               16219.00 MB
     Max Swap :                                   -
     Max Processes :                              4
     Max Threads :                                9
-    Run time :                                   86430 sec.
-    Turnaround time :                            86355 sec.
+    Run time :                                   12659 sec.
+    Turnaround time :                            19216 sec.
 
 The output (if any) is above this job summary.
 
@@ -61,5 +70,5 @@ The output (if any) is above this job summary.
 
 PS:
 
-Read file <outputs/Error_9112258.err> for stderr output of this job.
+Read file <outputs/Error_9135586.err> for stderr output of this job.
 
