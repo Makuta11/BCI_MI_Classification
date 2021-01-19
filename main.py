@@ -52,7 +52,11 @@ train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_S
 test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=True)
 print("created dataloaders")
 
-class_weights = [(np.array(label_test[2]) == x).sum()/((np.array(label_test[2]) == 0).sum()) for x in range(0,3)]
+totLabels = []
+for use in users_train:
+	totLabels = np.concatenate([totLabels, label_train[use]], axis=0)
+
+class_weights = [(np.array(totLabels) == x).sum()/((np.array(totLabels) == 0).sum()) for x in range(0,3)]
 
 del train_dataset, test_dataset, data_train, data_test, label_train, label_test
 torch.cuda.empty_cache()
