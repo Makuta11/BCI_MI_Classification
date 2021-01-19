@@ -32,13 +32,13 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 10000
-NUM_EPOCHS = 100
+NUM_EPOCHS = 10
 DROPOUT_PROP = 0.25
-LEARNING_RATE = 1e-4
+LEARNING_RATE = 1e-5
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
 CONV_FILTERS = [64, 32]
-LSTM_HIDDEN_DIM = 8
+LSTM_HIDDEN_DIM = 32
 
 # Create dataset and dataloaders
 #train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
@@ -67,7 +67,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Initialize model
 #model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 model = CnnNetConvLSTM(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
-optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-2)
+optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-1)
 criterion = nn.CrossEntropyLoss(weight = torch.Tensor(class_weights).to(device))
 print("initialized model")
 
