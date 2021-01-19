@@ -31,8 +31,8 @@ NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
-BATCH_SIZE = 1000
-NUM_EPOCHS = 5
+BATCH_SIZE = 10000
+NUM_EPOCHS = 20
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-3
 NUM_CLASSES = 3
@@ -76,7 +76,9 @@ loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion,
 print("trained model")
 
 # Save model for later evaluation
-torch.save(model.state_dict(), 'outputs/ONEPREDModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2_8lay_sd.pt')
+torch.save(model.state_dict(), 'outputs/ONEPREDModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + 
+		   '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 
+		   'LSTM2_' + str(LSTM_HIDDEN_DIM) + 'lay_sd.pt')
 print("saved model")
 
 # Define prediction evaluation parameters
