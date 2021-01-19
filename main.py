@@ -71,6 +71,9 @@ optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e
 criterion = nn.CrossEntropyLoss(weight = torch.Tensor(class_weights).to(device))
 print("initialized model")
 
+del class_weights
+torch.cuda.empty_cache()
+
 # Run training
 loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion, NUM_EPOCHS, train_dataloader, test_dataloader, device, scheduler = None)	
 print("trained model")
