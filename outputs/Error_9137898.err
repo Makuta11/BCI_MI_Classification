@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "main.py", line 65, in <module>
+    loss_collect, val_loss_collect, model = train_model(model, optimizer, criterion, NUM_EPOCHS, train_dataloader, test_dataloader, device, scheduler = None)	
+  File "/zhome/08/3/117881/BCI_Project/BCI_MI_Classification/train_function.py", line 39, in train_model
+    torch.cuda.empty_cache()
+  File "/zhome/08/3/117881/.local/lib/python3.6/site-packages/torch/cuda/memory.py", line 87, in empty_cache
+    torch._C._cuda_emptyCache()
+KeyboardInterrupt
