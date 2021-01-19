@@ -12,12 +12,12 @@ from models import *
 from performance import *
 
 # Perform test train split on 5 subjects
-Users = np.arange(13)
-users_train, users_test = train_test_split(Users, shuffle = True)
+#Users = np.arange(13)
+#users_train, users_test = train_test_split(Users, shuffle = True)
 
 # Only used for testing. Remove for final hand in
-#users_train = [0]#1, 3, 4, 5, 6]
-#users_test = [2]
+users_train = [0]#1, 3, 4, 5, 6]
+users_test = [2]
 
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
@@ -32,7 +32,7 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 10000
-NUM_EPOCHS = 10
+NUM_EPOCHS = 1
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-4
 NUM_CLASSES = 3
@@ -52,6 +52,8 @@ train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_S
 test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=True)
 print("created dataloaders")
 
+class_weights = [(np.array(label_test[2]) == x).sum()/((np.array(label_test[2]) == 0).sum()) for x in range(0,3)]
+
 del train_dataset, test_dataset, data_train, data_test, label_train, label_test
 torch.cuda.empty_cache()
 
@@ -62,7 +64,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 #model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 model = CnnNetConvLSTM(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-2)
-criterion = nn.CrossEntropyLoss()
+criterion = nn.CrossEntropyLoss(weight = torch.Tensor(class_weights).to(device))
 print("initialized model")
 
 # Run training
