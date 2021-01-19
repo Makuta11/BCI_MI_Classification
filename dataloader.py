@@ -66,6 +66,37 @@ class ImageTensorDatasetMultiEpoch(data.Dataset):
         
         return dataMatrix, labelsData, self.segmentID[key]
 
+# Class for loading data
+class ImageTensorDatasetOnePred(data.Dataset):
+
+    def __init__(self, data_input, user_ids, filter_seq, label):
+        
+        self.user_id, self.idx, self.idxRoll, self.segmentID = [], [], [], []
+
+        for i, user in enumerate(user_ids):
+            self.idx = np.concatenate((self.idx, np.arange(len(label[user]))), axis = 0).astype(int)
+            self.user_id = np.concatenate((self.user_id, np.multiply(user, np.ones(len(label[user])))), axis = 0).astype(int)
+            self.idxRoll = np.stack([np.roll(np.arange(len(label[user])), i, axis = 0) for i in range(filter_seq, -1, -1)], axis = 1)
+            if i == 0:
+                self.image_ix = self.idxRoll
+            else:
+                self.image_ix = np.concatenate((self.image_ix, self.idxRoll), axis = 0)
+        
+        self.segmentID = np.stack([np.roll(np.arange(len(self.user_id)), i, axis = 0) for i in range(filter_seq, -1, -1)], axis = 1)
+
+        self.labels = label
+        self.EEG_data = data_input
+
+
+    def __len__(self):
+        return len(self.image_ix)
+    
+    def __getitem__(self, key):
+        dataMatrix = self.EEG_data[self.user_id[key]][self.image_ix[key, :]]
+        labelsData = self.labels[self.user_id[key]][self.image_ix[key, 0]]
+        
+        return dataMatrix, labelsData, self.segmentID[key]
+
 
 # Load any compressed pickle file
 def decompress_pickle(file):
