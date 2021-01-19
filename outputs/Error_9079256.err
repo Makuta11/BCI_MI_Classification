@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "main.py", line 26, in <module>
-    for user in user_train:
-NameError: name 'user_train' is not defined

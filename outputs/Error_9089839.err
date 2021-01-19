@@ -1,4 +1,0 @@
-  File "main.py", line 22
-    data_train.to(device), data_test.to(device), label_train.to(device), label_test.to(device) = load_data(users_train, users_test)
-    ^
-SyntaxError: can't assign to function call

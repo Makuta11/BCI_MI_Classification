@@ -4,35 +4,27 @@ created datasets
 created dataloaders
 initialized model
 Training first epoch
-1 out of 5
-1.107479813306228
-1.0914672302163166
-2 out of 5
-1.0951374691465627
-1.081407474434894
-3 out of 5
-1.0892801310705102
-1.0761923893638279
-4 out of 5
-1.0860467864119487
-1.072960402654565
-5 out of 5
-1.0839937147886858
-1.0707453126492708
+1 out of 1
+0.8865667691937199
+0.6711569674236258
 trained model
 saved model
+   Precision    Recall  F1 score
+0   0.846973  0.987018  0.911649
+1   0.106104  0.006467  0.012190
+2   0.107237  0.013252  0.023589
 
 ------------------------------------------------------------
-Sender: LSF System <lsfadmin@n-62-20-12>
-Subject: Job 9105415: <My_Test_HPC> in cluster <dcc> Done
+Sender: LSF System <lsfadmin@n-62-20-15>
+Subject: Job 9151650: <My_Test_HPC> in cluster <dcc> Done
 
-Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164272> in cluster <dcc> at Fri Jan 15 18:18:31 2021
-Job was executed on host(s) <n-62-20-12>, in queue <gpuv100>, as user <s164272> in cluster <dcc> at Fri Jan 15 18:23:13 2021
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164272> in cluster <dcc> at Tue Jan 19 16:34:27 2021
+Job was executed on host(s) <n-62-20-15>, in queue <gpuv100>, as user <s164272> in cluster <dcc> at Tue Jan 19 16:34:29 2021
 </zhome/08/3/117881> was used as the home directory.
 </zhome/08/3/117881/BCI_Project/BCI_MI_Classification> was used as the working directory.
-Started at Fri Jan 15 18:23:13 2021
-Terminated at Fri Jan 15 18:44:10 2021
-Results reported at Fri Jan 15 18:44:10 2021
+Started at Tue Jan 19 16:34:29 2021
+Terminated at Tue Jan 19 16:38:08 2021
+Results reported at Tue Jan 19 16:38:08 2021
 
 Your job looked like:
 
@@ -49,7 +41,6 @@ Your job looked like:
 #BSUB -J My_Test_HPC
 ### specify the memory needed
 #BSUB -R "rusage[mem=32GB]"
-#BSUB -R "select[gpu32gb]"
 ### Number of hours needed
 #BSUB -W 23:59
 ### added outputs and errors to files
@@ -66,16 +57,16 @@ Successfully completed.
 
 Resource usage summary:
 
-    CPU time :                                   1203.14 sec.
-    Max Memory :                                 3978 MB
-    Average Memory :                             3719.75 MB
+    CPU time :                                   190.86 sec.
+    Max Memory :                                 7623 MB
+    Average Memory :                             6013.00 MB
     Total Requested Memory :                     32768.00 MB
-    Delta Memory :                               28790.00 MB
+    Delta Memory :                               25145.00 MB
     Max Swap :                                   -
     Max Processes :                              4
     Max Threads :                                9
-    Run time :                                   1291 sec.
-    Turnaround time :                            1539 sec.
+    Run time :                                   334 sec.
+    Turnaround time :                            221 sec.
 
 The output (if any) is above this job summary.
 
@@ -83,5 +74,5 @@ The output (if any) is above this job summary.
 
 PS:
 
-Read file <outputs/Error_9105415.err> for stderr output of this job.
+Read file <outputs/Error_9151650.err> for stderr output of this job.
 

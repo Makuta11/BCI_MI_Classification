@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "main.py", line 99, in <module>
-    collected_data['loss_collect'] = loss_collect
-NameError: name 'collected_data' is not defined
