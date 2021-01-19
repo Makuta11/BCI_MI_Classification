@@ -1,0 +1,78 @@
+Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 1
+1.1058163228242293
+1.095141535219939
+trained model
+saved model
+   Precision  Recall  F1 score
+0   0.000000     0.0  0.000000
+1   0.419081     1.0  0.590637
+2   0.000000     0.0  0.000000
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-16>
+Subject: Job 9145150: <My_Test_HPC> in cluster <dcc> Done
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164272> in cluster <dcc> at Tue Jan 19 11:09:22 2021
+Job was executed on host(s) <n-62-20-16>, in queue <gpuv100>, as user <s164272> in cluster <dcc> at Tue Jan 19 11:09:23 2021
+</zhome/08/3/117881> was used as the home directory.
+</zhome/08/3/117881/BCI_Project/BCI_MI_Classification> was used as the working directory.
+Started at Tue Jan 19 11:09:23 2021
+Terminated at Tue Jan 19 11:10:09 2021
+Results reported at Tue Jan 19 11:10:09 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   23.92 sec.
+    Max Memory :                                 208 MB
+    Average Memory :                             208.00 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               32560.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                6
+    Run time :                                   135 sec.
+    Turnaround time :                            47 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9145150.err> for stderr output of this job.
+
