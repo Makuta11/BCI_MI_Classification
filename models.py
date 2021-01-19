@@ -161,9 +161,6 @@ class CnnNetConvLSTM(nn.Module):
         ) 
 
     def forward(self, X_data):
-        batch_size = X_data.shape[0]
-        time = X_data.shape[1]
-
         # Convolutional Layers
         X_data = X_data.permute(0, 2, 1, 3)
         X_data = self.layer_img1(X_data)
