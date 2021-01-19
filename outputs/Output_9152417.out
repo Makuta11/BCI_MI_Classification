@@ -1,0 +1,135 @@
+Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 20
+1.1358871648477953
+1.0982963199518165
+2 out of 20
+1.0958678472873777
+1.096964763135326
+3 out of 20
+1.052631864436837
+1.106297227801109
+4 out of 20
+1.0106469611788904
+1.111842128695274
+5 out of 20
+0.9713559863179229
+1.11167618084927
+6 out of 20
+0.9320708083551984
+1.0776090816575654
+7 out of 20
+0.8823358142098715
+1.0237972493074379
+8 out of 20
+0.8415511500003726
+0.9583411794535968
+9 out of 20
+0.8129308575807616
+0.9166894117180182
+10 out of 20
+0.7897540206132934
+0.8679125850297966
+11 out of 20
+0.7693329977434735
+0.8220590480736324
+12 out of 20
+0.7496101944945579
+0.7822070790796863
+13 out of 20
+0.7297763935355253
+0.7497247992729654
+14 out of 20
+0.7101025065710378
+0.7212136728422982
+15 out of 20
+0.6924035790354707
+0.7016497686201212
+16 out of 20
+0.6773242928260981
+0.6874515189200031
+17 out of 20
+0.6645785525787709
+0.6724016398799663
+18 out of 20
+0.6540346278700717
+0.6664656248627877
+19 out of 20
+0.6451197504997254
+0.6514896999816505
+20 out of 20
+0.6370903727620147
+0.6436629672439731
+trained model
+saved model
+   Precision    Recall  F1 score
+0   0.851184  0.971242  0.907258
+1   0.131192  0.055720  0.078219
+2   0.000000  0.000000  0.000000
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-6>
+Subject: Job 9152417: <My_Test_HPC> in cluster <dcc> Done
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164248> in cluster <dcc> at Tue Jan 19 17:32:39 2021
+Job was executed on host(s) <n-62-20-6>, in queue <gpuv100>, as user <s164248> in cluster <dcc> at Tue Jan 19 17:32:41 2021
+</zhome/88/7/117159> was used as the home directory.
+</zhome/88/7/117159/Desktop/BCI_MI_Classification> was used as the working directory.
+Started at Tue Jan 19 17:32:41 2021
+Terminated at Tue Jan 19 18:13:24 2021
+Results reported at Tue Jan 19 18:13:24 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   2139.32 sec.
+    Max Memory :                                 7658 MB
+    Average Memory :                             7260.38 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               25110.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   2547 sec.
+    Turnaround time :                            2445 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9152417.err> for stderr output of this job.
+
