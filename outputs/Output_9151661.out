@@ -1,1 +1,105 @@
 Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 10
+0.8285976177481211
+0.6608840423695584
+2 out of 10
+0.6306692927939707
+0.6017513294169243
+3 out of 10
+0.5974058432666134
+0.5868448152187022
+4 out of 10
+0.5866881097288437
+0.5818549489721339
+5 out of 10
+0.5816974838574728
+0.5798538980331827
+6 out of 10
+0.5788986590354954
+0.5770607229242933
+7 out of 10
+0.5771135562631093
+0.5744987390142806
+8 out of 10
+0.5757384615946034
+0.574546810794384
+9 out of 10
+0.5749162353881417
+0.5738640630498846
+10 out of 10
+0.5743904111047858
+0.5739479109327844
+trained model
+saved model
+   Precision  Recall  F1 score
+0   0.846886     1.0  0.917096
+1   0.000000     0.0  0.000000
+2   0.000000     0.0  0.000000
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-15>
+Subject: Job 9151661: <My_Test_HPC> in cluster <dcc> Done
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164272> in cluster <dcc> at Tue Jan 19 16:38:46 2021
+Job was executed on host(s) <n-62-20-15>, in queue <gpuv100>, as user <s164272> in cluster <dcc> at Tue Jan 19 16:38:48 2021
+</zhome/08/3/117881> was used as the home directory.
+</zhome/08/3/117881/BCI_Project/BCI_MI_Classification> was used as the working directory.
+Started at Tue Jan 19 16:38:48 2021
+Terminated at Tue Jan 19 17:05:08 2021
+Results reported at Tue Jan 19 17:05:08 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1300.43 sec.
+    Max Memory :                                 7665 MB
+    Average Memory :                             7150.50 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               25103.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   1602 sec.
+    Turnaround time :                            1582 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9151661.err> for stderr output of this job.
+
