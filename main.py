@@ -26,7 +26,7 @@ print("loaded data")
 # Data parameters
 SEQ_CHANNELS = 3
 SEQ_FILTERS = 6
-SEQ_LENGTH = 5
+SEQ_LENGTH = 100
 NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
