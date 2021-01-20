@@ -32,7 +32,7 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 10000
-NUM_EPOCHS = 50
+NUM_EPOCHS = 10
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-4
 NUM_CLASSES = 3
@@ -57,7 +57,7 @@ totLabels = []
 for use in users_train:
 	totLabels = np.concatenate([totLabels, label_train[use]], axis=0)
 
-class_weights = [(np.array(totLabels) == x).sum()/((np.array(totLabels) == 0).sum()) for x in range(0,3)]
+class_weights = [(np.array(totLabels)).sum()/((np.array(totLabels) == x).sum() * 3.33) for x in range(0,3)]
 
 del train_dataset, test_dataset, data_train, data_test, label_train, label_test
 torch.cuda.empty_cache()
