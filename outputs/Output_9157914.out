@@ -1,1 +1,106 @@
 Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 10
+0.950300167140351
+1.0001311321207818
+2 out of 10
+0.9110960165659586
+0.9901681796033331
+3 out of 10
+0.8746071896052252
+0.9710914454561599
+4 out of 10
+0.8410388631363438
+0.9513308367830642
+5 out of 10
+0.8107174504293154
+0.9294666242092213
+6 out of 10
+0.7837834744692938
+0.9058428013578375
+7 out of 10
+0.7598996782956058
+0.8803641954635052
+8 out of 10
+0.7388992478314056
+0.8573486912757793
+9 out of 10
+0.7187735555378814
+0.8282306346487491
+10 out of 10
+0.694356298882123
+0.8180105825687977
+trained model
+saved model
+   Precision    Recall  F1 score
+0   0.846722  0.995375  0.915051
+1   0.005856  0.000126  0.000246
+2   0.009074  0.000281  0.000546
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-15>
+Subject: Job 9157914: <My_Test_HPC> in cluster <dcc> Done
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164248> in cluster <dcc> at Wed Jan 20 14:18:00 2021
+Job was executed on host(s) <n-62-20-15>, in queue <gpuv100>, as user <s164248> in cluster <dcc> at Wed Jan 20 14:18:02 2021
+</zhome/88/7/117159> was used as the home directory.
+</zhome/88/7/117159/Desktop/BCI_MI_Classification> was used as the working directory.
+Started at Wed Jan 20 14:18:02 2021
+Terminated at Wed Jan 20 14:44:42 2021
+Results reported at Wed Jan 20 14:44:42 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -R "select[gpu32gb]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   1308.93 sec.
+    Max Memory :                                 7664 MB
+    Average Memory :                             7139.86 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               25104.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   1671 sec.
+    Turnaround time :                            1602 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9157914.err> for stderr output of this job.
+
