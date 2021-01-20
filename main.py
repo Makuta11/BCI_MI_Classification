@@ -26,7 +26,7 @@ print("loaded data")
 # Data parameters
 SEQ_CHANNELS = 3
 SEQ_FILTERS = 6
-SEQ_LENGTH = 50
+SEQ_LENGTH = 100
 NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
@@ -39,7 +39,7 @@ NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
 CONV_FILTERS = [64, 32]
 LSTM_HIDDEN_DIM = 32
-WEIGHT_DECAY = 1e-2
+WEIGHT_DECAY = 1e-1
 
 # Create dataset and dataloaders
 #train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
