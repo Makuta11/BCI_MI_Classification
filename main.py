@@ -12,12 +12,12 @@ from models import *
 from performance import *
 
 # Perform test train split on 5 subjects
-#Users = np.arange(13)
-#users_train, users_test = train_test_split(Users, shuffle = True)
+Users = np.arange(13)
+users_train, users_test = train_test_split(Users, shuffle = True)
 
 # Only used for testing. Remove for final hand in
-users_train = [0]#1, 3, 4, 5, 6]
-users_test = [2]
+#users_train = [0]#1, 3, 4, 5, 6]
+#users_test = [2]
 
 # Load data - specify if you would like to load evaluation data as well
 data_train, data_test, label_train, label_test = load_data(users_train, users_test)
@@ -67,7 +67,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Initialize model
 #model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 model = CnnNetConvLSTM(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
-optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-1)
+optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-2)
 criterion = nn.CrossEntropyLoss(weight = torch.Tensor(class_weights).to(device))
 print("initialized model")
 
