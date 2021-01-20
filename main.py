@@ -26,7 +26,7 @@ print("loaded data")
 # Data parameters
 SEQ_CHANNELS = 3
 SEQ_FILTERS = 6
-SEQ_LENGTH = 50
+SEQ_LENGTH = 100
 NUM_CLASSES = 3
 DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
@@ -67,7 +67,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Initialize model
 #model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 model = CnnNetConvLSTM(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
-optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-2)
+optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-1)
 criterion = nn.CrossEntropyLoss(weight = torch.Tensor(class_weights).to(device))
 print("initialized model")
 
