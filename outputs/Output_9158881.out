@@ -1,0 +1,121 @@
+Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 40
+1.1064495038768472
+1.0034532128496374
+2 out of 40
+1.034287745821966
+0.9183258439632173
+3 out of 40
+0.9463935126997021
+0.8582490752352044
+4 out of 40
+0.8977841879134854
+0.831681970586168
+5 out of 40
+0.8598961362011357
+0.8057851518722291
+6 out of 40
+0.8275490071131214
+0.7751840784194621
+7 out of 40
+0.799844583147737
+0.7433742386229495
+8 out of 40
+0.7740159151760955
+0.7151387923575462
+9 out of 40
+0.7486126923669963
+0.6905493755289849
+10 out of 40
+0.7250008852514502
+0.6745125835246228
+11 out of 40
+0.7050505337649828
+0.6606038808822632
+12 out of 40
+0.6886838105715574
+0.650948536522845
+13 out of 40
+0.6751211092352323
+0.64377697985223
+14 out of 40
+0.6637749647440976
+0.6363381819522127
+15 out of 40
+0.6539790872569498
+0.6303930295274612
+16 out of 40
+0.6452905149220332
+0.623441812205822
+17 out of 40
+0.6376695804399987
+0.6194475540455352
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-15>
+Subject: Job 9158881: <My_Test_HPC> in cluster <dcc> Exited
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164248> in cluster <dcc> at Wed Jan 20 16:11:30 2021
+Job was executed on host(s) <n-62-20-15>, in queue <gpuv100>, as user <s164248> in cluster <dcc> at Wed Jan 20 16:11:32 2021
+</zhome/88/7/117159> was used as the home directory.
+</zhome/88/7/117159/Desktop/BCI_MI_Classification> was used as the working directory.
+Started at Wed Jan 20 16:11:32 2021
+Terminated at Wed Jan 20 17:02:35 2021
+Results reported at Wed Jan 20 17:02:35 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -R "select[gpu32gb]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   2393.27 sec.
+    Max Memory :                                 5065 MB
+    Average Memory :                             4872.08 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               27703.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   3063 sec.
+    Turnaround time :                            3065 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9158881.err> for stderr output of this job.
+
