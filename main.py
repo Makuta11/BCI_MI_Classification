@@ -39,7 +39,7 @@ NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
 CONV_FILTERS = [64, 32]
 LSTM_HIDDEN_DIM = 32
-WEIGHT_DECAY = 1e-1
+WEIGHT_DECAY = 1e-2
 
 # Create dataset and dataloaders
 #train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
