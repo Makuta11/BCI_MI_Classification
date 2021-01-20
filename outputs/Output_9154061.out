@@ -1,0 +1,90 @@
+Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 5
+0.6370231685951628
+0.657219747566197
+2 out of 5
+0.6573423269474751
+0.6571172424491838
+3 out of 5
+0.6572970280699478
+0.6563852553031683
+4 out of 5
+0.6572947949525687
+0.6570799179856325
+5 out of 5
+0.6573049644808835
+0.6569756261289936
+trained model
+saved model
+   Precision  Recall  F1 score
+0   0.848392     1.0  0.917978
+1   0.000000     0.0  0.000000
+2   0.000000     0.0  0.000000
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-2>
+Subject: Job 9154061: <My_Test_HPC> in cluster <dcc> Done
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164248> in cluster <dcc> at Tue Jan 19 18:53:42 2021
+Job was executed on host(s) <n-62-20-2>, in queue <gpuv100>, as user <s164248> in cluster <dcc> at Tue Jan 19 18:53:44 2021
+</zhome/88/7/117159> was used as the home directory.
+</zhome/88/7/117159/Desktop/BCI_MI_Classification> was used as the working directory.
+Started at Tue Jan 19 18:53:44 2021
+Terminated at Tue Jan 19 19:19:08 2021
+Results reported at Tue Jan 19 19:19:08 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   790.76 sec.
+    Max Memory :                                 7550 MB
+    Average Memory :                             6961.77 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               25218.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   1574 sec.
+    Turnaround time :                            1526 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9154061.err> for stderr output of this job.
+

@@ -1,1 +1,180 @@
 Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 300
+1.0790163982998242
+1.1231085497845885
+2 out of 300
+1.0372683638876135
+1.1023324471648022
+3 out of 300
+0.9954037124460394
+1.079512902485427
+4 out of 300
+0.954650590094653
+1.0585438628350534
+5 out of 300
+0.9156592629172585
+1.0356152121738722
+6 out of 300
+0.8793361032550985
+1.010987207453738
+7 out of 300
+0.8458791727369482
+0.9839122885016984
+8 out of 300
+0.8158058003945784
+0.9531203252013012
+9 out of 300
+0.7890576836737719
+0.9210993378393112
+10 out of 300
+0.7654100686311722
+0.8869239008554848
+11 out of 300
+0.7444117909128015
+0.8509929724918899
+12 out of 300
+0.7260379601608623
+0.8168719391668996
+13 out of 300
+0.7098780873146924
+0.7835237569706415
+14 out of 300
+0.6953123027628119
+0.758658996833268
+15 out of 300
+0.681395873427391
+0.7522540073240956
+16 out of 300
+0.6669545636935668
+0.7134940316600185
+17 out of 300
+0.6550025985999541
+0.6807238574950926
+18 out of 300
+0.6424847491762855
+0.6351636334132122
+19 out of 300
+0.6252072483301163
+0.6153321939129983
+20 out of 300
+0.6169178740544753
+0.6098306723820266
+21 out of 300
+0.6126991767774929
+0.6070459626054251
+22 out of 300
+0.6091759413480758
+0.604154178532221
+23 out of 300
+0.6064636352387341
+0.6022763136894472
+24 out of 300
+0.6042796863750978
+0.601026407493058
+25 out of 300
+0.6022790827534416
+0.5997029414740942
+26 out of 300
+0.6003726653077386
+0.5978165647035004
+27 out of 300
+0.5985306861725721
+0.5959946032493345
+28 out of 300
+0.5972201005979018
+0.5959420108026073
+29 out of 300
+0.5962374223904177
+0.5938651350236708
+30 out of 300
+0.5953805980357256
+0.593436243713543
+31 out of 300
+0.5945993033322421
+0.5931704025114736
+32 out of 300
+0.5938651661981236
+0.5931853549454802
+33 out of 300
+0.5931776916438883
+0.5917778591955861
+34 out of 300
+0.5925906937230717
+0.5909896986458891
+35 out of 300
+0.5920322120189667
+0.5900145288436643
+36 out of 300
+0.5915398993275383
+0.5917881233717806
+37 out of 300
+0.5910688058896498
+0.5900408446147878
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-20-15>
+Subject: Job 9151809: <My_Test_HPC> in cluster <dcc> Exited
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164248> in cluster <dcc> at Tue Jan 19 17:29:22 2021
+Job was executed on host(s) <n-62-20-15>, in queue <gpuv100>, as user <s164248> in cluster <dcc> at Tue Jan 19 17:29:24 2021
+</zhome/88/7/117159> was used as the home directory.
+</zhome/88/7/117159/Desktop/BCI_MI_Classification> was used as the working directory.
+Started at Tue Jan 19 17:29:24 2021
+Terminated at Tue Jan 19 19:08:52 2021
+Results reported at Tue Jan 19 19:08:52 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   4799.89 sec.
+    Max Memory :                                 7697 MB
+    Average Memory :                             7451.52 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               25071.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   6003 sec.
+    Turnaround time :                            5970 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9151809.err> for stderr output of this job.
+
