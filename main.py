@@ -32,13 +32,14 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 10000
-NUM_EPOCHS = 10
+NUM_EPOCHS = 30
 DROPOUT_PROP = 0.25
 LEARNING_RATE = 1e-5
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
 CONV_FILTERS = [64, 32]
-LSTM_HIDDEN_DIM = 64
+LSTM_HIDDEN_DIM = 32
+WEIGHT_DECAY = 1e-1
 
 # Create dataset and dataloaders
 #train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
@@ -67,7 +68,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # Initialize model
 #model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 model = CnnNetConvLSTM(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
-optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = 1e-1)
+optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = WEIGHT_DECAY)
 criterion = nn.CrossEntropyLoss(weight = torch.Tensor(class_weights).to(device))
 print("initialized model")
 
@@ -81,7 +82,7 @@ print("trained model")
 # Save model for later evaluation
 torch.save(model.state_dict(), 'outputs/ONEPREDModel_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + 
 		   '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 
-		   'LSTM2_' + str(LSTM_HIDDEN_DIM) + 'DIM_sd.pt')
+		   'LSTM2_' + str(LSTM_HIDDEN_DIM) + 'DIM_' + str(WEIGHT_DECAY) + 'WD_sd.pt')
 print("saved model")
 
 # Define prediction evaluation parameters
@@ -155,5 +156,7 @@ collected_data['scores'] = scores
 ################################
 
 # Save model performance statistics to a pickle file
-with open('modelSaves/ModelOutputONEPRED_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + '_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2_'+str(LSTM_HIDDEN_DIM)+'dim.pickle', 'wb') as handle:
+with open('modelSaves/ModelOutputONEPRED_' + str(len(CONV_FILTERS)) + 'lay_seq' + str(SEQ_LENGTH) + 
+		'_batch' + str(BATCH_SIZE) + '_epoch' + str(NUM_EPOCHS) + '_Lr' + str(LEARNING_RATE) + 'LSTM2_'
+		+ str(LSTM_HIDDEN_DIM)+'DIM_' + str(WEIGHT_DECAY) + 'WD.pickle', 'wb') as handle:
 	pickle.dump(collected_data, handle)
