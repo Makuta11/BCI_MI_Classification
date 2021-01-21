@@ -1,0 +1,226 @@
+Runnin script...
+loaded data
+created datasets
+created dataloaders
+initialized model
+Training first epoch
+1 out of 50
+1.1043893148501713
+1.099527416769991
+2 out of 50
+1.1030291219552357
+1.095202196504652
+3 out of 50
+1.1001863678296406
+1.0851309643578284
+4 out of 50
+1.0963983877941414
+1.0767036836171888
+5 out of 50
+1.093559251891242
+1.0725090982987708
+6 out of 50
+1.091377310178898
+1.0697895558838992
+7 out of 50
+1.0898324129758057
+1.0679017588035347
+8 out of 50
+1.0883666961281389
+1.0666328447381246
+9 out of 50
+1.0870101358051654
+1.0650802236242392
+10 out of 50
+1.0858837835214756
+1.0641297200291426
+11 out of 50
+1.084713199072414
+1.0625934748305488
+12 out of 50
+1.0832360706947468
+1.0612464196903189
+13 out of 50
+1.082170436227763
+1.0597020301622213
+14 out of 50
+1.080914107185823
+1.0577865642370636
+15 out of 50
+1.079676507247819
+1.0560460004609884
+16 out of 50
+1.0779565180893298
+1.0534242194952423
+17 out of 50
+1.0761742911956929
+1.0511401436992527
+18 out of 50
+1.0740858206042536
+1.048486302808388
+19 out of 50
+1.0713617934121027
+1.0463792073357965
+20 out of 50
+1.0688842198363058
+1.045798951817542
+21 out of 50
+1.0670187230463382
+1.0454118669647532
+22 out of 50
+1.0652070106179625
+1.0447320483394504
+23 out of 50
+1.0640041546689138
+1.047978338507033
+24 out of 50
+1.062642851361522
+1.0473725255002682
+25 out of 50
+1.0614792516937963
+1.0454482098215634
+26 out of 50
+1.0602856007991013
+1.043786820677138
+27 out of 50
+1.059531706350821
+1.0504494143515517
+28 out of 50
+1.0587573553676959
+1.045489139163617
+29 out of 50
+1.057533284028371
+1.047382525562011
+30 out of 50
+1.0569133620571207
+1.0502783035494618
+31 out of 50
+1.0560709933439891
+1.0437869484891598
+32 out of 50
+1.0555919800643567
+1.046743455621385
+33 out of 50
+1.0550614926550124
+1.047744221294049
+34 out of 50
+1.0543336222569148
+1.0473841600811358
+35 out of 50
+1.0534303182805027
+1.0456244687444156
+36 out of 50
+1.0531553250771981
+1.0479706415196055
+37 out of 50
+1.0525704418067579
+1.046546225695266
+38 out of 50
+1.0518639595420272
+1.0523488718209808
+39 out of 50
+1.0513424713302542
+1.0531685180270796
+40 out of 50
+1.0508744048851508
+1.0537690047136288
+41 out of 50
+1.0504716513333496
+1.05078094767541
+42 out of 50
+1.0497252372679886
+1.0538724021813304
+43 out of 50
+1.049626804612301
+1.057512913782572
+44 out of 50
+1.0485859827862845
+1.050006989351253
+45 out of 50
+1.0482927527692583
+1.0596642137802754
+46 out of 50
+1.0477092404056478
+1.061901652935854
+47 out of 50
+1.0473217119773228
+1.0523672595466536
+48 out of 50
+1.0466632346312206
+1.0565047767973437
+49 out of 50
+1.0461507395461753
+1.0545188532662146
+50 out of 50
+1.0460872870904427
+1.0656626077042413
+trained model
+saved model
+   Precision    Recall  F1 score
+0   0.896083  0.563354  0.691790
+1   0.112947  0.590027  0.189599
+2   0.146808  0.121694  0.133076
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@n-62-11-13>
+Subject: Job 9161797: <My_Test_HPC> in cluster <dcc> Done
+
+Job <My_Test_HPC> was submitted from host <gbarlogin2> by user <s164248> in cluster <dcc> at Thu Jan 21 09:54:23 2021
+Job was executed on host(s) <n-62-11-13>, in queue <gpuv100>, as user <s164248> in cluster <dcc> at Thu Jan 21 09:56:42 2021
+</zhome/88/7/117159> was used as the home directory.
+</zhome/88/7/117159/Desktop/BCI_MI_Classification> was used as the working directory.
+Started at Thu Jan 21 09:56:42 2021
+Terminated at Thu Jan 21 11:43:15 2021
+Results reported at Thu Jan 21 11:43:15 2021
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -gpu "num=1"
+#BSUB -J My_Test
+### number of core
+#BSUB -n 1 
+### specify that all cores should be on the same host
+#BSUB -R "span[hosts=1]"
+#BSUB -J My_Test_HPC
+### specify the memory needed
+#BSUB -R "rusage[mem=32GB]"
+#BSUB -R "select[gpu32gb]"
+### Number of hours needed
+#BSUB -W 23:59
+### added outputs and errors to files
+#BSUB -o outputs/Output_%J.out
+#BSUB -e outputs/Error_%J.err
+
+echo "Runnin script..."
+
+python3 main.py 
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   4771.54 sec.
+    Max Memory :                                 5060 MB
+    Average Memory :                             4894.60 MB
+    Total Requested Memory :                     32768.00 MB
+    Delta Memory :                               27708.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9
+    Run time :                                   6392 sec.
+    Turnaround time :                            6532 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <outputs/Error_9161797.err> for stderr output of this job.
+
