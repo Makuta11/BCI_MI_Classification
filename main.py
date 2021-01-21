@@ -69,7 +69,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 #model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 model = CnnNetConvLSTM(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = WEIGHT_DECAY)
-criterion = nn.CrossEntropyLoss() #weight = torch.Tensor(class_weights).to(device)
+criterion = nn.CrossEntropyLoss(weight = torch.Tensor(class_weights).to(device))
 print("initialized model")
 
 del class_weights, totLabels
