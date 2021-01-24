@@ -32,8 +32,8 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 10000
-NUM_EPOCHS = 200
-DROPOUT_PROP = 0.45
+NUM_EPOCHS = 100
+DROPOUT_PROP = 0.35
 LEARNING_RATE = 1e-5
 NUM_CLASSES = 3
 FC_HIDDEN_DIM = 512
@@ -42,11 +42,11 @@ LSTM_HIDDEN_DIM = 16
 WEIGHT_DECAY = 1e-2
 
 # Create dataset and dataloaders
-#train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
-#test_dataset = ImageTensorDatasetMultiEpoch(data_test, users_test, filter_seq = SEQ_LENGTH - 1, label = label_test)
+train_dataset = ImageTensorDatasetMultiEpoch(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
+test_dataset = ImageTensorDatasetMultiEpoch(data_test, users_test, filter_seq = SEQ_LENGTH - 1, label = label_test)
 print("created datasets")
-train_dataset = ImageTensorDatasetOnePred(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
-test_dataset = ImageTensorDatasetOnePred(data_test, users_test, filter_seq = SEQ_LENGTH - 1, label = label_test)
+#train_dataset = ImageTensorDatasetOnePred(data_train, users_train, filter_seq = SEQ_LENGTH - 1, label = label_train)
+#test_dataset = ImageTensorDatasetOnePred(data_test, users_test, filter_seq = SEQ_LENGTH - 1, label = label_test)
 
 
 train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
@@ -66,8 +66,8 @@ torch.cuda.empty_cache()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Initialize model
-#model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
-model = CnnNetConvLSTM(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
+model = CnnNetManyToMany(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
+#model = CnnNetConvLSTM(DATA_SHAPE, SEQ_LENGTH, CONV_FILTERS, LSTM_HIDDEN_DIM, FC_HIDDEN_DIM, DROPOUT_PROP, NUM_CLASSES).to(device)
 optimizer = optim.Adam(model.parameters(), lr = LEARNING_RATE, weight_decay = WEIGHT_DECAY)
 criterion = nn.CrossEntropyLoss(weight = torch.Tensor(class_weights).to(device))
 print("initialized model")
@@ -90,68 +90,68 @@ collect = dict()
 collected_data = dict()
 predictions = pd.DataFrame()
 
-# # Place prediction for each datapoint in a dictionary
-# for i, x in enumerate(test_dataloader):
-# 	model.eval()
-# 	outList = model(x[0].float().to(device)).detach().cpu()
-# 	outID = x[2]
+# Place prediction for each datapoint in a dictionary
+for i, x in enumerate(test_dataloader):
+	model.eval()
+	outList = model(x[0].float().to(device)).detach().cpu()
+	outID = x[2]
 
-# 	outLabelsTrue = x[1].long()
+	outLabelsTrue = x[1].long()
 	
-# 	for k in range(outList.shape[0]):
-# 		line = outList[k,:,:]
-# 		ids = outID[k,:].numpy()
-# 		j = 0
-# 		for id in ids:
-# 			if id in collect.keys():
-# 				temp = collect[id]['pred']
-# 				data = line[:,j].unsqueeze(1)
-# 				temp = torch.cat((temp, data), dim = 1)
-# 				collect[id]['pred'] = temp
-# 			else:
-# 				collect[id] = dict()
-# 				collect[id]['label'] = outLabelsTrue[k,j]
-# 				collect[id]['pred'] = line[:,j].unsqueeze(1)
-# 		j+=1
+	for k in range(outList.shape[0]):
+		line = outList[k,:,:]
+		ids = outID[k,:].numpy()
+		j = 0
+		for id in ids:
+			if id in collect.keys():
+				temp = collect[id]['pred']
+				data = line[:,j].unsqueeze(1)
+				temp = torch.cat((temp, data), dim = 1)
+				collect[id]['pred'] = temp
+			else:
+				collect[id] = dict()
+				collect[id]['label'] = outLabelsTrue[k,j]
+				collect[id]['pred'] = line[:,j].unsqueeze(1)
+		j+=1
 
-# # Calculate log probability for each datapoint and choose max for classification prediction
-# for key in collect.keys():
-# 	out = collect[key]['pred']
-# 	out = torch.log(out).sum(dim = 1)
-# 	prob, pred = torch.max(out, dim = 0)
+# Calculate log probability for each datapoint and choose max for classification prediction
+for key in collect.keys():
+	out = collect[key]['pred']
+	out = torch.log(out).sum(dim = 1)
+	prob, pred = torch.max(out, dim = 0)
 
-# 	temp = pd.DataFrame({'pred': pred, 'label': collect[key]['label'].numpy()}, index = [key])
-# 	predictions = predictions.append(temp)
+	temp = pd.DataFrame({'pred': pred, 'label': collect[key]['label'].numpy()}, index = [key])
+	predictions = predictions.append(temp)
 
-# # Calculate the scores for model performance
-# scores = test_scores(predictions['pred'], predictions['label'])
-# collected_data['loss_collect'] = loss_collect
-# collected_data['val_loss'] = val_loss_collect
-# collected_data['scores'] = scores
-
-# #### FOR ONEPRED OUT ######
-
-model.eval()
-for (i,x) in enumerate(test_dataloader):
-	x_data = x[0].float().to(device)
-	label = x[1].long()
-
-	out = model(x_data) 
-
-	prob, pred = torch.max(out, 1)
-	pred = pred.detach().cpu()
-
-	temp = pd.DataFrame({'pred': pred, 'label': label}, index = list(range(len(pred))))
-	predictions = predictions.append(temp, ignore_index = False)
-
-	del x_data, label
-	torch.cuda.empty_cache()
-
+# Calculate the scores for model performance
 scores = test_scores(predictions['pred'], predictions['label'])
-print(scores)
 collected_data['loss_collect'] = loss_collect
 collected_data['val_loss'] = val_loss_collect
 collected_data['scores'] = scores
+
+# # #### FOR ONEPRED OUT ######
+
+# model.eval()
+# for (i,x) in enumerate(test_dataloader):
+# 	x_data = x[0].float().to(device)
+# 	label = x[1].long()
+
+# 	out = model(x_data) 
+
+# 	prob, pred = torch.max(out, 1)
+# 	pred = pred.detach().cpu()
+
+# 	temp = pd.DataFrame({'pred': pred, 'label': label}, index = list(range(len(pred))))
+# 	predictions = predictions.append(temp, ignore_index = False)
+
+# 	del x_data, label
+# 	torch.cuda.empty_cache()
+
+# scores = test_scores(predictions['pred'], predictions['label'])
+# print(scores)
+# collected_data['loss_collect'] = loss_collect
+# collected_data['val_loss'] = val_loss_collect
+# collected_data['scores'] = scores
 
 ################################
 
