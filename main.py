@@ -32,7 +32,7 @@ DATA_SHAPE = SEQ_LENGTH, SEQ_FILTERS
 
 # Training parameters
 BATCH_SIZE = 10000
-NUM_EPOCHS = 100
+NUM_EPOCHS = 2
 DROPOUT_PROP = 0.35
 LEARNING_RATE = 1e-5
 NUM_CLASSES = 3
@@ -89,6 +89,8 @@ print("saved model")
 collect = dict()
 collected_data = dict()
 predictions = pd.DataFrame()
+
+############# Seq to seq evalutaion on test set ##############
 
 # Place prediction for each datapoint in a dictionary
 for i, x in enumerate(test_dataloader):
